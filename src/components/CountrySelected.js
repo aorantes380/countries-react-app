@@ -44,7 +44,11 @@ function CountrySelected({ match, history }) {
         fetch(`https://restcountries.eu/rest/v2/callingcode/${match.params.id}`)
         .then(response => response.json())
         .then(data => setCountry(data[0]));
-    }, [country, match.params.id])
+    }, [country, match.params.id]);
+
+    function handleClick() {
+        history.goBack()
+    }
 
     return (
         <CountrySelectedStyled>
@@ -61,7 +65,7 @@ function CountrySelected({ match, history }) {
                     <p><b>Area: </b>{country.area}</p>
                 </div>
             </div>
-            <Link className="back-btn" to="/">Regresar a Inicio</Link>
+            <button className="back-btn" onClick={handleClick}>Regresar</button>
         </CountrySelectedStyled>
     )
 }
